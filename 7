@@ -1,0 +1,52 @@
+package prog7;
+
+public class singleton {
+	private String accountnumber;
+	private String accountholdername;
+	private String balance;
+	private static volatile singleton instance;
+    private singleton(String accountnumber,String accountholdername,String balance) {
+    	this.accountnumber=accountnumber;
+    	this.accountholdername=accountholdername;
+    	this.balance=balance;
+}
+
+public static singleton getInstance(String accountnumber,String accountholdername,String balance) {
+	if(instance==null) {
+		synchronized(singleton.class) {
+			if(instance==null) {
+				instance=new singleton(accountnumber,accountholdername,balance);
+			}
+			}
+			}
+	return instance;
+		}
+public String getaccountnumber() {
+	return accountnumber;
+	}
+public String getaccountholdername() {
+	return accountholdername;
+}
+public String getbalance() {
+	return balance;
+}
+public static void main(String[] args) {
+	Thread thread1=new Thread(new Runnable() {
+	public void run(){
+		singleton account=singleton.getInstance("1234","name","1000");
+		System.out.println("thraed1-account_number"+account.getaccountholdername());
+		System.out.println("thread1-acoountholder name"+account.getaccountnumber());
+		System.out.println("thread1-accountbalance"+account.getbalance());
+		
+		singleton account1=singleton.getInstance("1456","akshay","1000");
+		System.out.println("thread1-account_number"+account1.getaccountholdername());
+		System.out.println("thread1-acoountholder name"+account1.getaccountnumber());
+		System.out.println("thread1-accountbalance"+account1.getbalance());
+		
+}
+});
+thread1.start();
+}
+}
+
+

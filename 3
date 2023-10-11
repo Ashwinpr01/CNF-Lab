@@ -1,0 +1,106 @@
+package labprog3;
+import java.util.Scanner;
+
+public class ma {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		while(true) {
+			System.out.println("select the printer");
+			System.out.println("1.Dot matrix");
+			System.out.println("2.Laser jet");
+			System.out.println("3.exit");
+			
+			int choice = scanner.nextInt();
+			
+			switch(choice) {
+			case 1:
+				Printer dotmatrix = new DotMatrix();
+				dotmatrix.config();
+				dotmatrix.display();
+				break;
+				
+			case 2:
+				Printer laserjet = new LaserJet();
+				laserjet.config();
+				laserjet.display();
+				break;
+			
+			case 3:
+				System.out.println("exit");
+				scanner.close();
+				return;
+				
+			}
+			
+		}
+	}
+
+}
+
+
+package labprog3;
+
+abstract class Printer {
+	abstract void config();
+	abstract void display();
+}
+
+class DotMatrix extends Printer{
+	void config() {
+		System.out.println("Dot matrix printer");
+	}
+	void display() {
+		System.out.println("dot matrix printing");
+	}
+}
+
+class LaserJet extends Printer{
+	void config() {
+		System.out.println("Laser jet printer");
+	}
+	void display() {
+		System.out.println("laser jet printer is printing");
+		}
+}
+
+
+
+
+
+package labprog3;
+
+interface vechile{
+	void drive();
+}
+
+abstract class abtractv implements vechile{
+	public abstract void drive();
+}
+
+class car extends abtractv{
+	@Override
+	public void drive() {
+		System.out.println("car");
+	}
+}
+
+class motor extends abtractv{
+	@Override
+	public void drive() {
+		System.out.println("motor");
+	}
+}
+
+public class main {
+	public static void main(String[] args) {
+		vechile vechile1 = new car();
+		vechile vechile2 = new motor();
+		
+		vechile1.drive();
+		vechile2.drive();
+	}
+
+
+
+}

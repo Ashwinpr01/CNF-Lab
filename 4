@@ -1,0 +1,50 @@
+package prog4;
+
+interface mediaplayer{
+	public void play(String filename);
+}
+interface advancemediaplayer{
+	public void playfile(String filename);
+}
+
+class mp3 implements mediaplayer{
+	public void play(String filename) {
+		System.out.println("mp3 is playing"+filename);
+	}
+}
+class mp4 implements advancemediaplayer{
+	public void playfile(String filename) {
+		System.out.println("mp4 is playing"+filename);
+	}
+}
+class vlc implements advancemediaplayer{
+	public void playfile(String filename) {
+		System.out.println("vlc is player"+filename);
+	}
+}
+class advacemediaadpter implements mediaplayer{
+	private advancemediaplayer AMP;
+	
+	public advacemediaadpter(advancemediaplayer AMP) {
+		this.AMP=AMP;
+}
+	public void play(String filename) {
+		System.out.println("playing using adpter"+filename);
+		AMP.playfile(filename);
+	}
+}
+
+
+public class main {
+	public static void main(String[] args) {
+		mediaplayer player=new mp3();
+		player.play("test1.mp3");
+		
+		player=new advacemediaadpter(new mp4());
+		player.play("test2.mp4");
+		
+		player=new advacemediaadpter(new vlc());
+		player.play("test3.mp4");
+
+}
+}

@@ -1,0 +1,41 @@
+package shape;
+
+public class circle {
+	private int radius;
+
+	public circle(int radius) {
+		this.radius=radius;
+	}
+	public double calculatearea() {
+		return 3.142 * this.radius * this.radius;
+	}
+}
+
+package shape22;
+
+import shape.circle;
+import shape.square;
+import shape.triangle;
+
+public class main {
+	
+		public static void main(String[] args)
+		{
+			square Square = new square(5);
+			System.out.println("area of square :");
+			System.out.println("area of square "+Square.getarea());
+			System.out.println("square perimeter "+Square.getperimeter());
+			
+			triangle Triangle = new triangle(10,5);
+			System.out.println("area of traingle ");
+			System.out.println("triangle area : "+Triangle.calculatearea());
+			System.out.println("triangle perimeter : "+Triangle.getperimeter());
+			
+			circle Circle = new circle(2);
+			System.out.println("area of circle");
+			System.out.println("circle is : "+Circle.calculatearea());
+		
+	}
+
+	
+}
